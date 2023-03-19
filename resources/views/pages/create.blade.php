@@ -22,11 +22,11 @@
     </div>
     <div class="form-group">
       <label for="cpf">CPF:</label>
-      <input type="number" class="form-control" min="10000000000" max="99999999999" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+      <input type="number" class="form-control" min="10000000000" max="99999999999" id="cpf" name="cpf" required>
     </div>
     <div class="form-group">
       <label for="data_filiacao">Data de filiacao:</label>
-      <input type="number" min="2000" max="2099" class="form-control" id="data_filiacao" name="data_filiacao" required>
+      <input type="number" min="2000" max="2023" class="form-control" id="data_filiacao" name="data_filiacao" required>
     </div>
     <input type="submit" class="btn btn-primary" value="Realizar cadastro">
   </form>

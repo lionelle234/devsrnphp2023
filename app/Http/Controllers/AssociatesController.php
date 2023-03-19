@@ -88,11 +88,13 @@ class AssociatesController extends Controller
 
     }
 
-    public function destroy($id) {
+    public function destroy($id, $associd) {
 
         Annuities::findOrFail($id)->delete();
+        $associate = Associates::findOrFail($associd);
+        
 
-        return redirect('/');
+        return redirect('/associados/view/'.$associd.'');
 
     }
 

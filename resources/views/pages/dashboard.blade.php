@@ -51,6 +51,16 @@
               Em aberto
             </a></form></td>
             @endif
+                <td><form action="/anuidades/{{ $annuity->id }},{{ $associd }}" method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <a href="/anuidades/{{ $annuity->id }},{{ $associd }}"
+              class="btn btn-warning" 
+              id="event-submit"
+              onclick="event.preventDefault();
+              this.closest('form').submit();">
+              Deletar
+            </a></form></td>
                 </tr>
             @endforeach    
         </tbody>
