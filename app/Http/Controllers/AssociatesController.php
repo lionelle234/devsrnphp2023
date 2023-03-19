@@ -90,9 +90,9 @@ class AssociatesController extends Controller
 
     public function destroy($id) {
 
-        Event::findOrFail($id)->delete();
+        Annuities::findOrFail($id)->delete();
 
-        return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
+        return redirect('/');
 
     }
 
@@ -147,6 +147,18 @@ class AssociatesController extends Controller
 
     }
 
+    public function unpayAnnuity($id, $associd) {
+
+        $associate = Associates::findOrFail($associd);
+        
+
+        $associate->annuitiesBelonged()->detach($id);    
+
+
+        return redirect('/associados/view/'.$associd.'');
+
+    }
+
     public function viewAssociate($id) {
         
 
@@ -163,16 +175,6 @@ class AssociatesController extends Controller
         );
     }
 
-    public function leaveEvent($id) {
-
-        $user = auth()->user();
-
-        $user->eventsAsParticipant()->detach($id);
-
-        $event = Event::findOrFail($id);
-
-        return redirect('/dashboard')->with('msg', 'Você saiu com sucesso do evento: ' . $event->title);
-
-    }
+    
 
 }
