@@ -1,5 +1,12 @@
 composer install --dev
 
+composer require laravel/jetstream
+
+php artisan jetstream:install livewire
+
+php artisan key:generate
+
+
 
 copie .env.example para .env
 
