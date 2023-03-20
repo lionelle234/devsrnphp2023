@@ -9,6 +9,8 @@ class Annuities extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function associates() {
         return $this->belongsToMany('App\Models\Associates');
     }

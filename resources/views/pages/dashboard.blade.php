@@ -17,7 +17,8 @@
                 <th scope="col">Ano</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Mudar status</th>
-                <th scope="col">Acoes</th>
+                <th scope="col">Remover</th>
+                <th scope="col">Alterar</th>
             </tr>
         </thead>
         <tbody>
@@ -60,6 +61,16 @@
               onclick="event.preventDefault();
               this.closest('form').submit();">
               Deletar
+            </a></form></td>
+            <td><form action="/anuidades/edit/{{ $annuity->id }}" method="GET">
+                        @csrf
+                        @method("GET")
+                        <a href="/anuidades/edit/{{ $annuity->id }}"
+              class="btn btn-info" 
+              id="event-submit"
+              onclick="event.preventDefault();
+              this.closest('form').submit();">
+              Editar
             </a></form></td>
                 </tr>
             @endforeach    

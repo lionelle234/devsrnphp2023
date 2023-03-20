@@ -23,9 +23,9 @@ Route::get('/anuidades/create', [AnnuitiesController::class, 'createannu']);
 Route::post('/anuidades', [AnnuitiesController::class, 'storeannu']);
 Route::get('/associados/{id}', [AssociatesController::class, 'show']);
 Route::post('/associados', [AssociatesController::class, 'store']);
-Route::get('/associados/edit/{id}', [AssociatesController::class, 'edit']);
-Route::put('/associados/update/{id}', [AssociatesController::class, 'update']);
-Route::get('/dashboard', [AssociatesController::class, 'dashboard']);
+
+Route::get('/anuidades/edit/{id}', [AssociatesController::class, 'edit']);
+Route::put('/anuidades/update/{id}', [AssociatesController::class, 'update']);
 
 
 

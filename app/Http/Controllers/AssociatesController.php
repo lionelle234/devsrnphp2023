@@ -74,19 +74,6 @@ class AssociatesController extends Controller
         
     }
 
-    public function dashboard() {
-
-        $user = auth()->user();
-
-        $events = $user->events;
-
-        $eventsAsParticipant = $user->eventsAsParticipant;
-
-        return view('pages.dashboard', 
-            ['events' => $events, 'eventsasparticipant' => $eventsAsParticipant]
-        );
-
-    }
 
     public function destroy($id, $associd) {
 
@@ -100,15 +87,12 @@ class AssociatesController extends Controller
 
     public function edit($id) {
 
-        $user = auth()->user();
+        
 
-        $event = Event::findOrFail($id);
+        $annuity = Annuities::findOrFail($id);
 
-        if($user->id != $event->user_id) {
-            return redirect('/dashboard');
-        }
 
-        return view('events.edit', ['event' => $event]);
+        return view('pages.editannu', ['annuity' => $annuity]);
 
     }
 
@@ -116,24 +100,10 @@ class AssociatesController extends Controller
 
         $data = $request->all();
 
-        // Image Upload
-        if($request->hasFile('image') && $request->file('image')->isValid()) {
 
-            $requestImage = $request->image;
+        Annuities::findOrFail($request->id)->update($data);
 
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $requestImage->move(public_path('img/events'), $imageName);
-
-            $data['image'] = $imageName;
-
-        }
-
-        Event::findOrFail($request->id)->update($data);
-
-        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+        return redirect('/');
 
     }
 

@@ -24,7 +24,6 @@
                 <h5 class="card-title">{{ $associate->nome }}</h5>
                 <p class="card-date">Filiado em: {{ $associate->data_filiacao }}</p>      
                 <a href="/associados/view/{{ $associate->id }}" class="btn btn-info">Ver anuidades</a>
-                <a href="/associados/edit/{{ $associate->id }}" class="btn btn-primary">Editar dados</a>
             </div>
         </div>
         @endforeach
