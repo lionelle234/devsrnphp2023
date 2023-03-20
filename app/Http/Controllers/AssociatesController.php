@@ -143,7 +143,7 @@ class AssociatesController extends Controller
         $associate = Associates::findOrFail($associd);
         
 
-        $associate->annuitiesBelonged()->attach($id);    
+        $associate->annuities()->attach($id);    
 
         return redirect('/associados/view/'.$associd.'');
 
@@ -154,7 +154,7 @@ class AssociatesController extends Controller
         $associate = Associates::findOrFail($associd);
         
 
-        $associate->annuitiesBelonged()->detach($id);    
+        $associate->annuities()->detach($id);    
 
 
         return redirect('/associados/view/'.$associd.'');
@@ -169,11 +169,20 @@ class AssociatesController extends Controller
         $annuities = Annuities::where([
             ['ano', '>=', $associate->data_filiacao]
         ])->get();
+
+
+        $golly = Annuities::with('associates')->whereHas('associates', function ($query)  use ($id) {
+            $query->where('id', $id);
+        })->get();
+        $sum = $golly->sum('valor');
+        $sum2 = $annuities->sum('valor');
+        $owned = $sum2 - $sum;
         
+
 
         
         return view('pages.dashboard', 
-            ['annuities' => $annuities, 'associate' => $associate, 'associd' => $associd]
+            ['annuities' => $annuities, 'associate' => $associate, 'associd' => $associd, 'owned' => $owned]
         );
     }
 

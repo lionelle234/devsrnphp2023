@@ -28,7 +28,7 @@
                     <td>{{ $annuity->nome_annu }}</td>
                     <td>{{ $annuity->ano }}</td>
                     <td>{{ $annuity->valor }}</td>
-            @if($annuity->associatesBelonged()->get()->contains($associd))
+            @if($annuity->associates()->get()->contains($associd))
             <td><form action="/anuidades/unpay/{{ $annuity->id }},{{ $associd }}" method="POST">
                         @csrf
                         @method("DELETE")
@@ -68,6 +68,18 @@
     @else
     <p>Nao ha anuidades disponiveis para este associado, <a href="/anuidades/create">criar anuidades</a></p>
     @endif
+    <table class="table">
+    <thead>
+            <tr>
+                <th scope="col">Valor total devido</th>
+            </tr>
+        </thead>
+    <tbody>
+    <tr>
+        <td>{{ $owned }}</td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 @endsection

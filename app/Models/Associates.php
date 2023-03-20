@@ -13,7 +13,7 @@ class Associates extends Model
 
     protected $guarded = [];
 
-    public function annuitiesBelonged() {
+    public function annuities() {
         return $this->belongsToMany('App\Models\Annuities');
     }
     

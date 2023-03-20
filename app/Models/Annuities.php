@@ -9,7 +9,7 @@ class Annuities extends Model
 {
     use HasFactory;
 
-    public function associatesBelonged() {
+    public function associates() {
         return $this->belongsToMany('App\Models\Associates');
     }
 }
